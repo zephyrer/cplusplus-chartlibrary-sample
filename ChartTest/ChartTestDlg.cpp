@@ -177,9 +177,16 @@ void CChartTestDlg::OnBnClickedButton1()
 
 		CRect rcWindow;
 		GetClientRect(rcWindow);
-		m_LineChartCtrl.Create(NULL, NULL, WS_CHILD | WS_VISIBLE, CRect(0, 50, rcWindow.Width(), rcWindow.Height()), this, 1234);
+		m_LineChartCtrl.Create(NULL, NULL, WS_CHILD | WS_VISIBLE, CRect(0, 50, rcWindow.Width()/2, rcWindow.Height()), this, 1234);
 
 		SetTimer(1234, 100, 0);
+	}
+	if(!m_LineChartCtrl2.m_hWnd)
+	{
+		CRect rcWindow;
+		GetClientRect(rcWindow);
+		m_LineChartCtrl2.Create(NULL, NULL, WS_CHILD | WS_VISIBLE, CRect(rcWindow.Width()/2, 50, rcWindow.Width(),rcWindow.Height()),this, 1235);
+		SetTimer(1, 200, 0);
 	}
 }
 
@@ -206,6 +213,13 @@ void CChartTestDlg::OnTimer(UINT_PTR nIDEvent)
 
 		if(m_LineChartCtrl.m_ChartData.lstData.GetSize() > 250)
 			KillTimer(1234);
+	}
+	if(1 == nIDEvent){
+		m_LineChartCtrl2.m_ChartData.Add(50, rand()%100);
+		m_LineChartCtrl2.RedrawWindow();
+
+		if(m_LineChartCtrl2.m_ChartData.lstData.GetSize() > 250)
+			KillTimer(1);
 	}
 
 	CDialog::OnTimer(nIDEvent);

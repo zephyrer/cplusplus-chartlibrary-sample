@@ -33,6 +33,7 @@ protected:
 public:
 	afx_msg void OnBnClickedButton1();
 	CChartControl m_LineChartCtrl;
+	CChartControl m_LineChartCtrl2;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
